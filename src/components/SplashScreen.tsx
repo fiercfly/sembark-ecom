@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Store } from 'lucide-react';
 import '../styles/SplashScreen.css';
 
 const SplashScreen: React.FC = () => {
@@ -18,7 +17,11 @@ const SplashScreen: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="splash-logo"
         >
-          <Store size={64} strokeWidth={2.5} />
+          <img 
+            src="https://tse3.mm.bing.net/th/id/OIP.L1KpGkBa-GcpEbwpS9u73wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" 
+            alt="Sembark Logo" 
+            className="splash-logo-img"
+          />
         </motion.div>
         
         <motion.div className="splash-text-container">

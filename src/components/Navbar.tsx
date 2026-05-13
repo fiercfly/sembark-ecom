@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Store, Sun, Moon, User } from 'lucide-react';
+import { ShoppingBag, Sun, Moon, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
@@ -14,7 +14,11 @@ const Navbar: React.FC = () => {
     <nav className="navbar">
       <div className="container nav-content">
         <Link to="/" className="logo">
-          <Store size={24} strokeWidth={2.5} />
+          <img 
+            src="https://tse3.mm.bing.net/th/id/OIP.L1KpGkBa-GcpEbwpS9u73wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" 
+            alt="Sembark Logo" 
+            className="logo-img"
+          />
           <span>SEMBARK</span>
         </Link>
 

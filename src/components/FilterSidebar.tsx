@@ -26,8 +26,42 @@ const FilterSidebar: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
 
   const selectedCategories = searchParams.getAll('categoryId').map(Number);
   const currentSort = searchParams.get('sort') || '';
-  const priceMin = searchParams.get('price_min') || '';
-  const priceMax = searchParams.get('price_max') || '';
+  
+  const [localMin, setLocalMin] = useState(searchParams.get('price_min') || '');
+  const [localMax, setLocalMax] = useState(searchParams.get('price_max') || '');
+
+  useEffect(() => {
+    setLocalMin(searchParams.get('price_min') || '');
+    setLocalMax(searchParams.get('price_max') || '');
+  }, [searchParams]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const newParams = new URLSearchParams(searchParams);
+      let changed = false;
+
+      const urlMin = searchParams.get('price_min') || '';
+      const urlMax = searchParams.get('price_max') || '';
+
+      if (localMin !== urlMin) {
+        if (localMin) newParams.set('price_min', localMin);
+        else newParams.delete('price_min');
+        changed = true;
+      }
+
+      if (localMax !== urlMax) {
+        if (localMax) newParams.set('price_max', localMax);
+        else newParams.delete('price_max');
+        changed = true;
+      }
+
+      if (changed) {
+        setSearchParams(newParams);
+      }
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, [localMin, localMax, setSearchParams]); // Removed searchParams from deps to prevent re-runs on every change
 
   const handleCategoryChange = (categoryId: number) => {
     const newSelected = [...selectedCategories];
@@ -55,18 +89,9 @@ const FilterSidebar: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
     setSearchParams(newParams);
   };
 
-  const handlePriceChange = (type: 'min' | 'max', value: string) => {
-    const newParams = new URLSearchParams(searchParams);
-    const key = `price_${type}`;
-    if (value) {
-      newParams.set(key, value);
-    } else {
-      newParams.delete(key);
-    }
-    setSearchParams(newParams);
-  };
-
   const clearFilters = () => {
+    setLocalMin('');
+    setLocalMax('');
     setSearchParams(new URLSearchParams());
   };
 
@@ -96,15 +121,15 @@ const FilterSidebar: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
           <input
             type="number"
             placeholder="Min"
-            value={priceMin}
-            onChange={(e) => handlePriceChange('min', e.target.value)}
+            value={localMin}
+            onChange={(e) => setLocalMin(e.target.value)}
           />
           <span>-</span>
           <input
             type="number"
             placeholder="Max"
-            value={priceMax}
-            onChange={(e) => handlePriceChange('max', e.target.value)}
+            value={localMax}
+            onChange={(e) => setLocalMax(e.target.value)}
           />
         </div>
       </div>

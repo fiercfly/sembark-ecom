@@ -18,9 +18,13 @@
   gap: 2rem;
 }
 
-.splash-logo {
-  color: var(--text-primary);
+.splash-logo-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  object-fit: cover;
 }
+
 
 .splash-text-container {
   display: flex;

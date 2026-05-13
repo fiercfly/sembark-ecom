@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { Trash2, Plus, Minus, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import emptyCartImg from '../assets/empty-cart.png';
 import '../styles/Cart.css';
 
 const Cart: React.FC = () => {
@@ -18,7 +17,7 @@ const Cart: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
         >
           <motion.img 
-            src={emptyCartImg} 
+            src="https://tse3.mm.bing.net/th/id/OIP.L1KpGkBa-GcpEbwpS9u73wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" 
             alt="Empty Cart" 
             className="empty-cart-img"
             animate={{ y: [0, -10, 0] }}
@@ -46,9 +45,16 @@ const Cart: React.FC = () => {
               <motion.div 
                 key={item.id} 
                 className="cart-item glass"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ 
+                  opacity: 0, 
+                  scale: 0.5, 
+                  x: -100, 
+                  rotate: -10, 
+                  filter: 'blur(8px)',
+                  transition: { duration: 0.4, ease: "easeIn" }
+                }}
                 layout
               >
                 <div className="item-image">
