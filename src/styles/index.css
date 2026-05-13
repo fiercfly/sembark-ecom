@@ -30,7 +30,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
+
+img, button, .nav-icon-btn, .quick-add-btn {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
 
 body {
   font-family: 'Inter', sans-serif;

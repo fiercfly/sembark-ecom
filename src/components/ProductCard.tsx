@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import type { Product } from '../types';
-import { Plus, Eye } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/ProductCard.css';
@@ -55,12 +55,6 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       <div className="product-image-wrapper">
         <Link to={`/product/${product.id}`} className="product-image-link">
           <img src={product.images[0]} alt={product.title} loading="lazy" />
-          <div className="product-card-overlay">
-            <div className="overlay-badge">
-              <Eye size={18} />
-              Quick View
-            </div>
-          </div>
         </Link>
         
         <AnimatePresence>
