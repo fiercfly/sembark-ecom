@@ -141,7 +141,7 @@ const FilterSidebar: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
             <div className="loading-placeholder">Loading...</div>
           ) : (
             categories.slice(0, 8).map((category) => (
-              <label key={category.id} className="category-item">
+              <label key={category.id} className={`category-item ${selectedCategories.includes(category.id) ? 'selected' : ''}`}>
                 <input
                   type="checkbox"
                   checked={selectedCategories.includes(category.id)}
